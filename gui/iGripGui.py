@@ -15,5 +15,6 @@ class iGripGui():
         self.api = Api()
 
     def run(self):
-        webview.create_window('iGrip', 'gui/assets/index.html', js_api=self.api, min_size=(600, 450))
+        webview.create_window('iGrip', 'gui/assets/index.html', width=650, height=600,
+                resizable=False, js_api=self.api)
         webview.start()
