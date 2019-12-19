@@ -5,6 +5,7 @@ import websockets
 import random
 
 packets = {
+    "SET_BOUNDS": "sb",
     "FEEDBACK_VALUE": "fv" #aka true value
 }
 

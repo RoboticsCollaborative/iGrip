@@ -11,12 +11,11 @@ from Controller import Controller
 
 class iGrip:
     def __init__(self):
-        self.gui = iGripGui()
         self.controller = Controller()
 
     def run(self):
+        print('iGrip is now running!')
         self.controller.start()
-        self.gui.run()
 
 if __name__ == '__main__':
     try:

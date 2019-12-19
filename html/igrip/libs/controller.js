@@ -9,7 +9,7 @@ widget1Frame.addEventListener("load", function() {
         widget1Frame.contentWindow.exportRoot.setWidgetName("Position");
 
         widgets[widget1Frame.contentWindow.exportRoot.UUID] = widget1Frame.contentWindow.exportRoot;
-        nameToUUID["widget1"] = widget1Frame.contentWindow.exportRoot.UUID;
+        nameToUUID["joint0_0"] = widget1Frame.contentWindow.exportRoot.UUID;
     }, 1000);
 });
 
@@ -19,7 +19,7 @@ widget2Frame.addEventListener("load", function() {
         widget2Frame.contentWindow.exportRoot.setWidgetName("Velocity");
         widget2Frame.contentWindow.exportRoot.setColor("#00b354");
         widgets[widget2Frame.contentWindow.exportRoot.UUID] = widget2Frame.contentWindow.exportRoot;
-        nameToUUID["widget2"] = widget2Frame.contentWindow.exportRoot.UUID;
+        nameToUUID["joint0_1"] = widget2Frame.contentWindow.exportRoot.UUID;
     }, 1000);
 });
 
@@ -29,7 +29,7 @@ widget3Frame.addEventListener("load", function() {
         widget3Frame.contentWindow.exportRoot.setWidgetName("Stiffness");
         widget3Frame.contentWindow.exportRoot.setColor("#bb34ff");
         widgets[widget3Frame.contentWindow.exportRoot.UUID] = widget3Frame.contentWindow.exportRoot;
-        nameToUUID["widget3"] = widget3Frame.contentWindow.exportRoot.UUID;
+        nameToUUID["joint0_2"] = widget3Frame.contentWindow.exportRoot.UUID;
     }, 1000);
 });
 
@@ -41,7 +41,7 @@ function uuidToName(uuid){
         }
     }
 
-    return "N/A";
+    return "";
 }
 
 function setValueCallback(val, uuid){
@@ -51,6 +51,11 @@ function setValueCallback(val, uuid){
 
 function setTrueValue(name, val){
     widgets[nameToUUID[name]].setTrueValue(val);
+}
+
+function setBounds(name, lowerBound, upperBound){
+    widgets[nameToUUID[name]].setLowerBound(lowerBound);
+    widgets[nameToUUID[name]].setUpperBound(upperBound);
 }
 
 //SETUP WEBSOCKET CLIENT
@@ -68,6 +73,11 @@ ws.onmessage = function (event) {
             if(nameToUUID[tokens[1]] && tokens[2]){
                 console.log("Setting feedback (true) value: " + tokens[1] + " " + tokens[2]);
                 setTrueValue(tokens[1], tokens[2]);
+            }
+        }else if(tokens[0] == "sb"){ //set bounds
+            if(nameToUUID[tokens[1]] && tokens[2] && tokens[3]){
+                console.log("Setting bounds for " + tokens[1] + ": " + tokens[2] + ", " + tokens[3]);
+                setBounds(tokens[1], tokens[2], tokens[3]);
             }
         }else{
             console.log("Unhandled packet received: " + tokens[0]);
