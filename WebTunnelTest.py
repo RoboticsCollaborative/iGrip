@@ -1,21 +1,21 @@
 import time
-import asyncio
-
 from WebTunnel import WebTunnel
 
+tunnel = WebTunnel(None, 5679)
+tunnel.start()
 
-def main():
-    tunnel = WebTunnel(None)
-    tunnel.start()
-    print("starting webtunnel")
-    print("Started webtunnel")
-
-    print("queuing position bounds packet")
-    tunnel.pushPkt(tunnel.createPositionBoundsPacket(0, 10, 100))
-
-    time.sleep(2)
-    tunnel.pushPkt(tunnel.createPositionBoundsPacket(0, 5, 100))
-    tunnel.pushPkt(tunnel.createPositionBoundsPacket(1, 10, 100))
+tunnel.sendPositionFeedbackPacket(0, 0.6432)
+tunnel.sendPositionBoundsPacket(0, -1.2, 1.3)
 
 
-main()
+while True:
+    try:
+        input = raw_input("Type in q to quit\n")
+    except KeyboardInterrupt:
+        tunnel.shutdown()
+        break
+
+    if input == 'q':
+        tunnel.shutdown()
+        break
+

@@ -1,15 +1,15 @@
+import SimpleHTTPServer
+import SocketServer
 import os
-import http.server
-import socketserver
 
-PORT = 8080
+PORT = 8000
 HTML_DIR = 'html/igrip'
 
-Handler = http.server.SimpleHTTPRequestHandler
+Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
 
 web_dir = os.path.join(os.path.dirname(__file__), HTML_DIR)
 os.chdir(web_dir)
 
-with socketserver.TCPServer(("", PORT), Handler) as httpd:
-    print("serving at port ", PORT)
-    httpd.serve_forever()
+httpd = SocketServer.TCPServer(("", PORT), Handler)
+print("serving at port ", PORT)
+httpd.serve_forever()

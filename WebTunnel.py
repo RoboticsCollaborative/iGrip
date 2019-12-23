@@ -1,17 +1,18 @@
-import asyncio
 import datetime
+import time
 import random
-import websockets
-import random
+from websocket_server import WebsocketServer
 import threading
 
 
 class WebTunnel(threading.Thread):
-    def __init__(self, controller):
+    def __init__(self, controller, port):
         threading.Thread.__init__(self)
 
+        self.port = port
+
         self.outboundPackets = {
-            "SET_BOUNDS": "sb",
+            "SET_VALUE_BOUNDS": "svb",
             "FEEDBACK_VALUE": "fv" #aka true value
         }
 
@@ -31,87 +32,90 @@ class WebTunnel(threading.Thread):
         self.controller = controller
         self.queue = []
 
-        self.loop = asyncio.new_event_loop()
-        #self.queue.append(self.createPositionBoundsPacket(0, 10, 100))
+        self.server = WebsocketServer(self.port)
+
+        self.server.set_fn_new_client(self.new_client)
+        self.server.set_fn_client_left(self.client_left)
+        self.server.set_fn_message_received(self.message_received)
+
+        self.positionFeedback = {};
+        self.positionBounds = {};
 
 
-    async def consumer_handler(self, websocket, msg):
-        async for message in websocket:
-            print('client sent: ' + message)
-            if '%' in message:
-                tokens = message.split('%')
-                if tokens[0] == self.inboundPackets['USER_VALUE']:
-                    if tokens[1] and tokens[2]:
-                        if tokens[1][:-1] in self.jointNoToWidgetPrefix:
-                            index = self.jointNoToWidgetPrefix.index(tokens[1][:-1])
+    def run(self):
+        print("Tunnel now running!")
+        self.server.run_forever()
+    
+    def shutdown(self):
+        print("Shutting down")
+        try:
+            self.server.shutdown()
+        except:
+            exit(1)
+
+    # Called for every client connecting (after handshake)
+    def new_client(self, client, server):
+        print("New client connected and was given id %d" % client['id'])
+        print("Filling in client with latest data")
+
+        #send latest position bounds
+        for k in self.positionBounds:
+            self.server.send_message(client, self.getPositionBoundsPacket(k,
+            str(self.positionBounds[k][0]), self.positionBounds[k][1]))
+
+        #send latest position feedbacks
+        for k in self.positionFeedback:
+            self.server.send_message(client, self.getPositionFeedbackPacket(k,
+            self.positionFeedback[k]))
+
+    def client_left(self, client, server):
+	    print("Client(%d) disconnected" % client['id'])
+
+    def message_received(self, client, server, message):
+        print("Client %d said: %s", client['id'], message)
+
+        if '%' in message:
+            tokens = message.split('%')
+            if tokens[0] == self.inboundPackets['USER_VALUE']:
+                if tokens[1] and tokens[2]:
+                    if tokens[1][:-1] in self.jointNoToWidgetPrefix:
+                        index = self.jointNoToWidgetPrefix.index(tokens[1][:-1])
                            
-                            if self.controller:
-                                self.controller.setPosition(index, tokens[2])
-                            else:
-                                print('Undefined controller -- tried calling setPosition(' 
-                                + str(index) + ', ' + str(tokens[2]) + ')')
+                        if self.controller:
+                            self.controller.setPosition(index, tokens[2])
                         else:
-                            print('Could not find target with prefix: ' + tokens[1][:-1])
+                            print('Undefined controller -- tried calling setPosition(' 
+                            + str(index) + ', ' + str(tokens[2]) + ')')
                     else:
-                        print('Corrupt USER_VALUE packet')
+                        print('Could not find target with prefix: ' + tokens[1][:-1])
                 else:
-                    print('Unhandled packet: ' + tokens[0])
+                    print('Corrupt USER_VALUE packet')
             else:
-                print('Invalid packet')
+                print('Unhandled packet: ' + tokens[0])
+        else:
+            print('Invalid packet')
 
-    async def producer_handler(self, websocket, path):
-        while True:
-            message = await self.sendUpdate()
 
-            if message == None:
-                await asyncio.sleep(random.random() * 1)
-                continue
+    def sendPositionBoundsPacket(self, no, lower, upper):
+        self.server.send_message_to_all(self.getPositionBoundsPacket(no, lower, upper))
+        self.positionBounds[no] = [lower, upper]
 
-            await websocket.send(message)
+    def sendPositionFeedbackPacket(self, no, val):
+        self.server.send_message_to_all(self.getPositionFeedbackPacket(no, val))
+        self.positionFeedback[no] = val
 
-    def createPositionBoundsPacket(self, no, lower, upper):
+    def getPositionBoundsPacket(self, no, lower, upper):
         if self.jointNoToWidgetPrefix[no]:
-            return (self.outboundPackets["SET_BOUNDS"] + "%" + self.jointNoToWidgetPrefix[no] +
+            return (self.outboundPackets["SET_VALUE_BOUNDS"] + "%" + self.jointNoToWidgetPrefix[no] +
             self.positionSuffix  + "%" + str(lower) + "%" + str(upper))
         else:
             print("Could not find widget prefix for no = " + no)
             return None
 
-    def createPositionFeedbackPacket(self, no, val):
+    def getPositionFeedbackPacket(self, no, val):
         if self.jointNoToWidgetPrefix[no]:
             return (self.outboundPackets["FEEDBACK_VALUE"] + "%" + self.jointNoToWidgetPrefix[no] +
-            self.positionSuffix + "%" + val)
+            str(self.positionSuffix) + "%" + str(val))
         else:
             print("Could not find widget prefix for no = " + no)
             return None
-
-    async def sendUpdate(self):
-        if len(self.queue) > 0:
-            print('found queued packet to send')
-            return self.queue.pop(0)
-        return None
-    
-    #pushes string packet to queue
-    def pushPkt(self, pkt):
-        self.queue.append(pkt)
-
-    async def server(self, websocket, path):
-        consumer_task = asyncio.ensure_future(
-            self.consumer_handler(websocket, path))
-        producer_task = asyncio.ensure_future(
-            self.producer_handler(websocket, path))
-        done, pending = await asyncio.wait(
-            [consumer_task, producer_task],
-            return_when=asyncio.FIRST_COMPLETED,
-        )
-        for task in pending:
-            task.cancel()
-
-    def run(self):
-        print("Tunnel now running!")
-        asyncio.set_event_loop(self.loop)
-
-        self.start_server = websockets.serve(self.server, "127.0.0.1", 5679)
-
-        asyncio.get_event_loop().run_until_complete(self.start_server)
-        asyncio.get_event_loop().run_forever()

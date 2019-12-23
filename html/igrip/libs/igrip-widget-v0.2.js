@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"igrip_widget_v0.1_atlas_", frames: [[0,0,930,930],[1039,0,87,88],[1128,0,87,88],[932,0,50,191],[1191,90,8,238],[932,193,8,238],[984,0,53,172],[770,932,768,721],[0,932,768,768],[1125,90,31,68],[1158,90,31,68],[1260,41,31,68],[1217,41,41,68],[1039,90,41,68],[1082,90,41,68],[1217,0,80,39]]}
+		{name:"igrip_widget_v0.2_atlas_", frames: [[0,0,930,930],[1039,0,87,88],[1128,0,87,88],[932,0,50,191],[1191,90,8,238],[932,193,8,238],[984,0,53,172],[770,932,768,721],[0,932,768,768],[1125,90,31,68],[1158,90,31,68],[1260,41,31,68],[1217,41,41,68],[1039,90,41,68],[1082,90,41,68],[1217,0,80,39]]}
 ];
 
 
@@ -12,112 +12,112 @@ lib.ssMetadata = [
 
 
 (lib.CachedBmp_16 = function() {
-	this.initialize(ss["igrip_widget_v0.1_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_15 = function() {
-	this.initialize(ss["igrip_widget_v0.1_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
 	this.gotoAndStop(1);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_14 = function() {
-	this.initialize(ss["igrip_widget_v0.1_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
 	this.gotoAndStop(2);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_13 = function() {
-	this.initialize(ss["igrip_widget_v0.1_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
 	this.gotoAndStop(3);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_12 = function() {
-	this.initialize(ss["igrip_widget_v0.1_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
 	this.gotoAndStop(4);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_11 = function() {
-	this.initialize(ss["igrip_widget_v0.1_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
 	this.gotoAndStop(5);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_10 = function() {
-	this.initialize(ss["igrip_widget_v0.1_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
 	this.gotoAndStop(6);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_9 = function() {
-	this.initialize(ss["igrip_widget_v0.1_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
 	this.gotoAndStop(7);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_8 = function() {
-	this.initialize(ss["igrip_widget_v0.1_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
 	this.gotoAndStop(8);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_7 = function() {
-	this.initialize(ss["igrip_widget_v0.1_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
 	this.gotoAndStop(9);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_6 = function() {
-	this.initialize(ss["igrip_widget_v0.1_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
 	this.gotoAndStop(10);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_5 = function() {
-	this.initialize(ss["igrip_widget_v0.1_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
 	this.gotoAndStop(11);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_4 = function() {
-	this.initialize(ss["igrip_widget_v0.1_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
 	this.gotoAndStop(12);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_3 = function() {
-	this.initialize(ss["igrip_widget_v0.1_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
 	this.gotoAndStop(13);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_2 = function() {
-	this.initialize(ss["igrip_widget_v0.1_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
 	this.gotoAndStop(14);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_1 = function() {
-	this.initialize(ss["igrip_widget_v0.1_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
 	this.gotoAndStop(15);
 }).prototype = p = new cjs.Sprite();
 // helper functions:
@@ -1027,8 +1027,6 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 		var clearanceUpper = 330;
 		var decimalPrecision = 2;
 		
-		//this.addEventListener("tick",fl_RotateContinuously.bind(this));
-		
 		//setup input boxes
 		var limitInput;
 		var valueInput;
@@ -1061,11 +1059,11 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 				return;
 			}
 			
-			if(val > scaledLimit){
+			/*if(val > scaledLimit){
 				console.log("Value cannot be greater than limit: " + scaledLimit);
 				console.log("Maximizing to limit!");
 				val = scaledLimit;
-			}
+			}*/
 			
 			val = round(val, granularity);
 			
@@ -1332,6 +1330,9 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 			
 			this.incrGranularityBtn.addEventListener("click", this.increaseGranularity.bind(this));
 			this.decrGranularityBtn.addEventListener("click", this.decreaseGranularity.bind(this));
+			
+			//let parent know that the widget has loaded
+			parent.loadComplete();
 		
 		}.bind(this), 0);
 		
@@ -1549,11 +1550,11 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/igrip_widget_v0.1_atlas_.png?1576714212645", id:"igrip_widget_v0.1_atlas_"},
-		{src:"components/lib/jquery-3.4.1.min.js?1576714212714", id:"lib/jquery-3.4.1.min.js"},
-		{src:"components/sdk/anwidget.js?1576714212714", id:"sdk/anwidget.js"},
-		{src:"components/ui/src/textinput.js?1576714212714", id:"an.TextInput"},
-		{src:"components/ui/src/label.js?1576714212714", id:"an.Label"}
+		{src:"images/igrip_widget_v0.2_atlas_.png?1577063196488", id:"igrip_widget_v0.2_atlas_"},
+		{src:"components/lib/jquery-3.4.1.min.js?1577063196561", id:"lib/jquery-3.4.1.min.js"},
+		{src:"components/sdk/anwidget.js?1577063196561", id:"sdk/anwidget.js"},
+		{src:"components/ui/src/textinput.js?1577063196561", id:"an.TextInput"},
+		{src:"components/ui/src/label.js?1577063196561", id:"an.Label"}
 	],
 	preloads: []
 };
