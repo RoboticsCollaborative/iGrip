@@ -1050,6 +1050,8 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 		var minGranularity = 0.01;
 		var maxGranularity = 1;
 		
+		var currentSegment = -1;
+		
 		//this.dial.progressPie.filler.tint = 0.5;
 		var defaultDialColor = "#34aeff";
 		var dialFiller = null;
@@ -1057,6 +1059,7 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 		this.overlayContainerDiv = "#dom_overlay_container";
 		
 		this.UUID = uuidv4();
+		
 		
 		this.setTrueValue = function(val){
 			if(val < lowerBoundVal || val > upperBoundVal){
@@ -1180,7 +1183,7 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 			scaledVal = val;
 			this.valueHand.rotation = scaledValToDeg(val);
 			$(this.overlayContainerDiv)[0].children["valueInput"].value = displayScaledValue ? scaledVal.toFixed(decimalPrecision) : this.valueHand.rotation.toFixed(decimalPrecision);
-			parent.setValueCallback(scaledVal, this.UUID);
+			//parent.setValueCallback(scaledVal, this.UUID);
 		}
 		
 		this.setLimit = function(val, forcibly){
@@ -1390,7 +1393,7 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 			this.decrGranularityBtn.addEventListener("click", this.decreaseGranularity.bind(this));
 			
 			//let parent know that the widget has loaded
-			parent.loadComplete();
+			//parent.loadComplete();
 		
 		}.bind(this), 0);
 		
@@ -1407,7 +1410,7 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 			item.drag = true;
 		}
 		
-		var currentSegment = -1;
+		var lastHandler = null;
 		
 		function playSegment(target, begin, end) {
 			console.log("playSegment begin: " + begin + " end: " + end);
@@ -1421,9 +1424,17 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 				return;
 			}
 			
+			if(lastHandler){
+				console.log("removing old listener");
+				target.stop();
+				target.removeEventListener("tick", lastHandler);
+			}
+			
 			target.alpha = 0.5;
+				
 			target.gotoAndPlay(begin);
-			target.addEventListener(
+			
+			var handler = target.addEventListener(
 				"tick",
 				function (e) {
 					//console.log("target current frame: " + target.currentFrame);
@@ -1435,6 +1446,8 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 					}
 				}
 			);
+				
+			lastHandler = handler;
 		}
 		
 		
