@@ -1183,7 +1183,7 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 			scaledVal = val;
 			this.valueHand.rotation = scaledValToDeg(val);
 			$(this.overlayContainerDiv)[0].children["valueInput"].value = displayScaledValue ? scaledVal.toFixed(decimalPrecision) : this.valueHand.rotation.toFixed(decimalPrecision);
-			//parent.setValueCallback(scaledVal, this.UUID);
+			parent.setValueCallback(scaledVal, this.UUID);
 		}
 		
 		this.setLimit = function(val, forcibly){
@@ -1393,7 +1393,7 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 			this.decrGranularityBtn.addEventListener("click", this.decreaseGranularity.bind(this));
 			
 			//let parent know that the widget has loaded
-			//parent.loadComplete();
+			parent.loadComplete();
 		
 		}.bind(this), 0);
 		
@@ -1612,11 +1612,11 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/igrip_widget_v0.3_atlas_.png", id:"igrip_widget_v0.3_atlas_"},
-		{src:"components/lib/jquery-3.4.1.min.js", id:"lib/jquery-3.4.1.min.js"},
-		{src:"components/sdk/anwidget.js", id:"sdk/anwidget.js"},
-		{src:"components/ui/src/textinput.js", id:"an.TextInput"},
-		{src:"components/ui/src/label.js", id:"an.Label"}
+		{src:"images/igrip_widget_v0.3_atlas_.png?1578522414981", id:"igrip_widget_v0.3_atlas_"},
+		{src:"components/lib/jquery-3.4.1.min.js?1578522415098", id:"lib/jquery-3.4.1.min.js"},
+		{src:"components/sdk/anwidget.js?1578522415098", id:"sdk/anwidget.js"},
+		{src:"components/ui/src/textinput.js?1578522415098", id:"an.TextInput"},
+		{src:"components/ui/src/label.js?1578522415098", id:"an.Label"}
 	],
 	preloads: []
 };
