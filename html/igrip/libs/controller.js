@@ -13,7 +13,7 @@ var lastPacketsSent = {};
 function loadComplete(){
     loadedArr++;
 
-    if(loadedArr == 3){
+    if(loadedArr == 6){
         setupWidgets();
         setupConnection();
     }
@@ -37,6 +37,20 @@ function setupWidgets(){
     widget3Frame.contentWindow.exportRoot.setColor("#bb34ff");
     widgets[widget3Frame.contentWindow.exportRoot.UUID] = widget3Frame.contentWindow.exportRoot;
     nameToUUID["joint0_2"] = widget3Frame.contentWindow.exportRoot.UUID;
+
+    widget4Frame.contentWindow.exportRoot.setWidgetName("Position");
+    widgets[widget4Frame.contentWindow.exportRoot.UUID] = widget4Frame.contentWindow.exportRoot;
+    nameToUUID["joint1_0"] = widget4Frame.contentWindow.exportRoot.UUID;
+
+    widget5Frame.contentWindow.exportRoot.setWidgetName("Velocity");
+    widget5Frame.contentWindow.exportRoot.setColor("#00b354");
+    widgets[widget5Frame.contentWindow.exportRoot.UUID] = widget5Frame.contentWindow.exportRoot;
+    nameToUUID["joint1_1"] = widget5Frame.contentWindow.exportRoot.UUID;
+
+    widget6Frame.contentWindow.exportRoot.setWidgetName("Stiffness");
+    widget6Frame.contentWindow.exportRoot.setColor("#bb34ff");
+    widgets[widget6Frame.contentWindow.exportRoot.UUID] = widget6Frame.contentWindow.exportRoot;
+    nameToUUID["joint1_2"] = widget6Frame.contentWindow.exportRoot.UUID;
 }
 
 //SETUP WIDGETS
@@ -56,6 +70,27 @@ widget2Frame.addEventListener("load", function() {
 
 var widget3Frame = document.getElementById("dof1_stiffness");
 widget3Frame.addEventListener("load", function() {
+    setTimeout(function(){ 
+        //notifyLoad();
+    }, 1000);
+});
+
+var widget4Frame = document.getElementById("dof2_position");
+widget4Frame.addEventListener("load", function() {
+    setTimeout(function(){ 
+        //notifyLoad();
+    }, 1000);
+});
+
+var widget5Frame = document.getElementById("dof2_velocity");
+widget5Frame.addEventListener("load", function() {
+    setTimeout(function(){ 
+        //notifyLoad()
+    }, 1000);
+});
+
+var widget6Frame = document.getElementById("dof2_stiffness");
+widget6Frame.addEventListener("load", function() {
     setTimeout(function(){ 
         //notifyLoad();
     }, 1000);

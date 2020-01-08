@@ -12,7 +12,7 @@ class Controller(threading.Thread):
         self.rddaProxy = RddaProxy()
         self.isRunning = False
         #TODO: make these modular and dynamically loaded
-        self.stiffness = np.array([0.9, 0.4])
+        self.stiffness = np.array([0.4, 0.4])
         self.position = np.array([0.15, 0.15])
         self.lastActualPositions = np.array([0.15, 0.15])
         self.rate = rospy.Rate(500)
@@ -33,8 +33,12 @@ class Controller(threading.Thread):
         self.tunnel.start()
 
         for i in range(len(self.rddaProxy.joint_lower_bounds)):
+            #position bounds & values
             self.tunnel.sendPositionBoundsPacket(i, self.rddaProxy.joint_lower_bounds[i], self.rddaProxy.joint_upper_bounds[i])
             self.tunnel.sendPositionFeedbackPacket(i, self.rddaProxy.actual_positions[i])
+
+            #stifness bounds
+            self.tunnel.sendStiffnessBoundsPacket(i, 0, 5)
 
         while not rospy.is_shutdown():
             if not self.isRunning:
@@ -44,13 +48,15 @@ class Controller(threading.Thread):
             self.rddaProxy.set_stiffness(self.stiffness)
             self.rddaProxy.set_positions(self.position)
 
-            if self.iterations % 5 == 0:
+            if self.iterations % 2 == 0:
                 for i in range(len(self.rddaProxy.joint_lower_bounds)):
                     if abs(self.lastActualPositions[i] - self.rddaProxy.actual_positions[i]) < 0.001:
                         pass
                     else:
                         self.lastActualPositions[i] = self.rddaProxy.actual_positions[i]
                         self.tunnel.sendPositionFeedbackPacket(i, self.rddaProxy.actual_positions[i])
+
+                    self.tunnel.sendStiffnessFeedbackPacket(i, self.rddaProxy.applied_efforts[i])
 
             self.rate.sleep()
             self.iterations += 1
@@ -59,6 +65,13 @@ class Controller(threading.Thread):
         print 'Setting position i = ' + str(i) + ' val = ' + str(val)
         if i < len(self.position):
             self.position[i] = val
+        else:
+            print 'Index is invalid!'
+    
+    def setStiffness(self, i, val):
+        print 'Setting stiffness i = ' + str(i) + ' val = ' + str(val)
+        if i < len(self.position):
+            self.stiffness[i] = val
         else:
             print 'Index is invalid!'
 

@@ -39,7 +39,10 @@ class WebTunnel(threading.Thread):
         self.server.set_fn_message_received(self.message_received)
 
         self.positionFeedback = {};
+        self.stiffnessFeedback = {};
+
         self.positionBounds = {};
+        self.stiffnessBounds = {};
 
 
     def run(self):
@@ -68,6 +71,17 @@ class WebTunnel(threading.Thread):
             self.server.send_message(client, self.getPositionFeedbackPacket(k,
             self.positionFeedback[k]))
 
+        #send latest stiffness bounds
+        for k in self.stiffnessBounds:
+            self.server.send_message(client, self.getStiffnessBoundsPacket(k,
+            str(self.stiffnessBounds[k][0]), self.stiffnessBounds[k][1]))
+
+        #send latest applied force feedbacks
+        for k in self.stiffnessFeedback:
+            self.server.send_message(client, self.getStiffnessFeedbackPacket(k,
+            self.stiffnessFeedback[k]))
+
+
     def client_left(self, client, server):
 	    print("Client(%d) disconnected" % client['id'])
 
@@ -78,16 +92,29 @@ class WebTunnel(threading.Thread):
             tokens = message.split('%')
             if tokens[0] == self.inboundPackets['USER_VALUE']:
                 if tokens[1] and tokens[2]:
-                    if tokens[1][:-1] in self.jointNoToWidgetPrefix:
-                        index = self.jointNoToWidgetPrefix.index(tokens[1][:-1])
+                    jointType = tokens[1].split("_")
+                    jointType = jointType[len(jointType) - 1]
+
+                    jointPrefix = tokens[1].split("_")[0] + "_"
+                    #jointNo = jointPrefix.split("joint")
+                    #jointNo = jointNo[len(jointNo) - 1]
+
+                    print "jointPrefix: " + jointPrefix + "\n"
+                    print "joint type: " + jointType + "\n"
+
+                    if jointPrefix in self.jointNoToWidgetPrefix:
+                        index = self.jointNoToWidgetPrefix.index(jointPrefix)
                            
                         if self.controller:
-                            self.controller.setPosition(index, tokens[2])
+                            if jointType == self.positionSuffix:
+                                self.controller.setPosition(index, tokens[2])
+                            elif jointType == self.stiffnessSuffix:
+                                self.controller.setStiffness(index, tokens[2])
                         else:
                             print('Undefined controller -- tried calling setPosition(' 
                             + str(index) + ', ' + str(tokens[2]) + ')')
                     else:
-                        print('Could not find target with prefix: ' + tokens[1][:-1])
+                        print('Could not find target with prefix: ' + jointPrefix)
                 else:
                     print('Corrupt USER_VALUE packet')
             else:
@@ -103,6 +130,15 @@ class WebTunnel(threading.Thread):
     def sendPositionFeedbackPacket(self, no, val):
         self.server.send_message_to_all(self.getPositionFeedbackPacket(no, val))
         self.positionFeedback[no] = val
+    
+    def sendStiffnessBoundsPacket(self, no, lower, upper):
+        print "SENDING STIFFNESS BOUNDS: " + str(no) + " " + str(lower) + " " + str(upper)
+        self.server.send_message_to_all(self.getStiffnessBoundsPacket(no, lower, upper))
+        self.stiffnessBounds[no] = [lower, upper]
+
+    def sendStiffnessFeedbackPacket(self, no, val):
+        self.server.send_message_to_all(self.getStiffnessFeedbackPacket(no, val))
+        self.stiffnessFeedback[no] = val
 
     def getPositionBoundsPacket(self, no, lower, upper):
         if self.jointNoToWidgetPrefix[no]:
@@ -112,10 +148,26 @@ class WebTunnel(threading.Thread):
             print("Could not find widget prefix for no = " + no)
             return None
 
+    def getStiffnessBoundsPacket(self, no, lower, upper):
+        if self.jointNoToWidgetPrefix[no]:
+            return (self.outboundPackets["SET_VALUE_BOUNDS"] + "%" + self.jointNoToWidgetPrefix[no] +
+            self.stiffnessSuffix  + "%" + str(lower) + "%" + str(upper))
+        else:
+            print("Could not find widget prefix for no = " + no)
+            return None
+
     def getPositionFeedbackPacket(self, no, val):
         if self.jointNoToWidgetPrefix[no]:
             return (self.outboundPackets["FEEDBACK_VALUE"] + "%" + self.jointNoToWidgetPrefix[no] +
             str(self.positionSuffix) + "%" + str(val))
+        else:
+            print("Could not find widget prefix for no = " + no)
+            return None
+    
+    def getStiffnessFeedbackPacket(self, no, val):
+        if self.jointNoToWidgetPrefix[no]:
+            return (self.outboundPackets["FEEDBACK_VALUE"] + "%" + self.jointNoToWidgetPrefix[no] +
+            str(self.stiffnessSuffix) + "%" + str(val))
         else:
             print("Could not find widget prefix for no = " + no)
             return None
