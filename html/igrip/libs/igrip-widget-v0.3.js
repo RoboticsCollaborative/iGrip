@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"igrip_widget_v0.2_atlas_", frames: [[0,0,930,930],[1039,0,87,88],[1128,0,87,88],[932,0,50,191],[1191,90,8,238],[932,193,8,238],[984,0,53,172],[770,932,768,721],[0,932,768,768],[1125,90,31,68],[1158,90,31,68],[1260,41,31,68],[1217,41,41,68],[1039,90,41,68],[1082,90,41,68],[1217,0,80,39]]}
+		{name:"igrip_widget_v0.3_atlas_", frames: [[0,0,930,930],[1039,0,87,88],[1128,0,87,88],[932,0,50,191],[1191,90,8,238],[932,193,8,238],[984,0,53,172],[770,932,768,721],[0,932,768,768],[1125,90,31,68],[1158,90,31,68],[1260,41,31,68],[1217,41,41,68],[1039,90,41,68],[1082,90,41,68],[1217,0,80,39]]}
 ];
 
 
@@ -12,112 +12,112 @@ lib.ssMetadata = [
 
 
 (lib.CachedBmp_16 = function() {
-	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.3_atlas_"]);
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_15 = function() {
-	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.3_atlas_"]);
 	this.gotoAndStop(1);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_14 = function() {
-	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.3_atlas_"]);
 	this.gotoAndStop(2);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_13 = function() {
-	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.3_atlas_"]);
 	this.gotoAndStop(3);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_12 = function() {
-	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.3_atlas_"]);
 	this.gotoAndStop(4);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_11 = function() {
-	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.3_atlas_"]);
 	this.gotoAndStop(5);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_10 = function() {
-	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.3_atlas_"]);
 	this.gotoAndStop(6);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_9 = function() {
-	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.3_atlas_"]);
 	this.gotoAndStop(7);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_8 = function() {
-	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.3_atlas_"]);
 	this.gotoAndStop(8);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_7 = function() {
-	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.3_atlas_"]);
 	this.gotoAndStop(9);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_6 = function() {
-	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.3_atlas_"]);
 	this.gotoAndStop(10);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_5 = function() {
-	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.3_atlas_"]);
 	this.gotoAndStop(11);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_4 = function() {
-	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.3_atlas_"]);
 	this.gotoAndStop(12);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_3 = function() {
-	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.3_atlas_"]);
 	this.gotoAndStop(13);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_2 = function() {
-	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.3_atlas_"]);
 	this.gotoAndStop(14);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_1 = function() {
-	this.initialize(ss["igrip_widget_v0.2_atlas_"]);
+	this.initialize(ss["igrip_widget_v0.3_atlas_"]);
 	this.gotoAndStop(15);
 }).prototype = p = new cjs.Sprite();
 // helper functions:
@@ -238,7 +238,7 @@ p._updateVisibility = _updateVisibility;
 	// Layer_1
 	this.limitInput = new lib.an_TextInput({'id': 'limitInput', 'value':'', 'disabled':false, 'visible':true, 'class':'ui-textinput'});
 
-	this.limitInput.setTransform(-13.6,55.05,0.9059,0.8728,89.8247,0,0,50.4,10.7);
+	this.limitInput.setTransform(-16.7,55.15,0.9059,1.123,89.8256,0,0,50.6,10.7);
 
 	this.instance = new lib.CachedBmp_13();
 	this.instance.setTransform(-2.5,5.25,0.5,0.5);
@@ -250,7 +250,7 @@ p._updateVisibility = _updateVisibility;
 
 	this._renderFirstFrame();
 
-}).prototype = getMCSymbolPrototype(lib.Symbol16copy, new cjs.Rectangle(-24,-2,46.5,119), null);
+}).prototype = getMCSymbolPrototype(lib.Symbol16copy, new cjs.Rectangle(-30.1,-2,52.6,119), null);
 
 
 (lib.Symbol16 = function(mode,startPosition,loop) {
@@ -259,7 +259,7 @@ p._updateVisibility = _updateVisibility;
 	// value_
 	this.valueInput = new lib.an_TextInput({'id': 'valueInput', 'value':'', 'disabled':false, 'visible':true, 'class':'ui-textinput'});
 
-	this.valueInput.setTransform(14.6,59.7,0.9065,0.8841,-90,0,0,49.9,11.1);
+	this.valueInput.setTransform(17.8,59.7,0.9065,1.1252,-90,0,0,49.9,11.2);
 
 	this.instance = new lib.CachedBmp_10();
 	this.instance.setTransform(-25.85,7.5,0.5,0.5);
@@ -274,7 +274,7 @@ p._updateVisibility = _updateVisibility;
 
 	this._renderFirstFrame();
 
-}).prototype = getMCSymbolPrototype(lib.Symbol16, new cjs.Rectangle(-25.8,-2,50.5,119), null);
+}).prototype = getMCSymbolPrototype(lib.Symbol16, new cjs.Rectangle(-25.8,-2,56.3,119), null);
 
 
 (lib.Symbol14copy = function(mode,startPosition,loop) {
@@ -1032,13 +1032,18 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 		var valueInput;
 		var widgetName;
 		
+		var granularityLabel;
+		
+		var lowerLimitLabel;
+		var upperLimitLabel;
+		
 		var lowerBoundVal = 0.0; //minimum output value
 		var upperBoundVal = 100.0; //maximum output value
 		
 		var displayScaledValue = true; //setting this to false will make the widget use degrees instead
 		
-		var scaledVal = 0.0; //running value
-		var scaledLimit = 0.0; //limit
+		var scaledVal = 25.0; //running value
+		var scaledLimit = 6.0; //limit
 		var trueScaledVal = 0.0; //indicated by covered portion
 		
 		var granularity = 0.01;
@@ -1073,11 +1078,19 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 			var fromDeg = parseInt(scaledValToDeg(previousTrueScaledVal));
 			var toDeg = parseInt(scaledValToDeg(trueScaledVal));
 			
-			if(fromDeg < toDeg){
-				playSegment(this.dial.progressPie, fromDeg - 30, toDeg - 30);
+			var sourceDeg;
+			
+			if(currentSegment != -1){
+				sourceDeg = currentSegment;
+			}else{
+				sourceDeg = fromDeg - 30;
+			}
+				
+			if(sourceDeg < toDeg - 30){
+				playSegment(this.dial.progressPie, sourceDeg, toDeg - 30);
 			}else{
 				//60 -> 30  === frame 30 -> frame 0 === frame 570 -> frame 600
-				playSegment(this.dial.progressPie, 600 - (fromDeg - 30), 600 - (toDeg - 30));
+				playSegment(this.dial.progressPie, 600 - sourceDeg, 600 - (toDeg - 30));
 			}
 			
 			/*if(lastMadeValue < parseInt(this.valueHand.rotation, 10)){
@@ -1132,7 +1145,11 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 		
 		this.setGranularity = function(val){
 			granularity = val;
-			this.granularityTxt.text = granularity;
+			
+			if(granularityLabel){
+				granularityLabel.innerHTML = granularity;
+			}
+			//this.granularityTxt.text = granularity;
 		}
 		
 		this.setColor = function(val){
@@ -1144,16 +1161,18 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 			this.dial.progressPie.filler.addChild(dialFiller);
 		}
 		
-		this.setValue = function(val){
-			if(val < lowerBoundVal || val > upperBoundVal){
-				console.log("Could not set value to: " + val + ". Has to be within [" + lowerBoundVal + ", " + upperBoundVal + "]");
-				return;
-			}
-			
-			if(val > scaledLimit){
-				console.log("Value cannot be greater than limit: " + scaledLimit);
-				console.log("Maximizing to limit!");
-				val = scaledLimit;
+		this.setValue = function(val, forcibly){
+			if(!forcibly){
+				if(val < lowerBoundVal || val > upperBoundVal){
+					console.log("Could not set value to: " + val + ". Has to be within [" + lowerBoundVal + ", " + upperBoundVal + "]");
+					return;
+				}
+				
+				if(val > scaledLimit){
+					console.log("Value cannot be greater than limit: " + scaledLimit);
+					console.log("Maximizing to limit!");
+					val = scaledLimit;
+				}
 			}
 			
 			val = round(val, granularity);
@@ -1164,16 +1183,18 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 			parent.setValueCallback(scaledVal, this.UUID);
 		}
 		
-		this.setLimit = function(val){
-			if(val < lowerBoundVal || val > upperBoundVal){
-				console.log("Could not set value to: " + val + ". Has to be within [" + lowerBoundVal + ", " + upperBoundVal + "]");
-				return;
-			}
-			
-			if(val < scaledVal){
-				console.log("Limit cannot be less than current (set) value!");
-				console.log("Minimizing to current (set) value!");
-				val = scaledVal;
+		this.setLimit = function(val, forcibly){
+			if(!forcibly){
+				if(val < lowerBoundVal || val > upperBoundVal){
+					console.log("Could not set value to: " + val + ". Has to be within [" + lowerBoundVal + ", " + upperBoundVal + "]");
+					return;
+				}
+				
+				if(val < scaledVal){
+					console.log("Limit cannot be less than current (set) value!");
+					console.log("Minimizing to current (set) value!");
+					val = scaledVal;
+				}
 			}
 			
 			val = round(val, granularity);
@@ -1187,12 +1208,28 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 		
 		this.setLowerBound = function (val) {
 			lowerBoundVal = val;
-			this.lowerLimitTxt.text = val.toFixed(decimalPrecision);
+			lowerLimitLabel.innerHTML = val.toFixed(decimalPrecision);
+			
+			if(scaledVal < val){
+				this.setValue((upperBoundVal + lowerBoundVal) / 2, true);
+			}
+			
+			if(scaledLimit < val){
+				this.setLimit(upperBoundVal, true);
+			}
 		}
 		
 		this.setUpperBound = function (val) {
 			upperBoundVal = val;
-			this.upperLimitTxt.text = val.toFixed(decimalPrecision);
+			upperLimitLabel.innerHTML = val.toFixed(decimalPrecision);
+			
+			if(scaledVal > upperBoundVal){
+				this.setValue((upperBoundVal + lowerBoundVal) / 2, true);
+			}
+			
+			if(scaledLimit > upperBoundVal){
+				this.setLimit(upperBoundVal, true);
+			}
 		}
 		
 		this.getLowerBound = function () {
@@ -1263,6 +1300,27 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 			widgetName.style.fontWeight = "bold";
 			widgetName.style.textAlign = "center";
 			widgetName.innerHTML = "Position";
+			
+			//SETUP GRANULARITY LABEL
+			granularityLabel = $(this.overlayContainerDiv)[0].children["granularityLabel"];
+			granularityLabel.style.fontSize = "32px";
+			granularityLabel.style.fontFamily = "Burbank Big Wide";
+			granularityLabel.style.textAlign = "center";
+			granularityLabel.innerHTML = granularity;
+			
+			//SETUP LOWER LIMIT LABEL
+			lowerLimitLabel = $(this.overlayContainerDiv)[0].children["lowerLimitLabel"];
+			lowerLimitLabel.style.fontSize = "28px";
+			lowerLimitLabel.style.fontFamily = "Burbank Big Wide";
+			lowerLimitLabel.style.textAlign = "center";
+			lowerLimitLabel.innerHTML = lowerBoundVal.toFixed(decimalPrecision);
+			
+			//SETUP UPPER LIMIT LABEL
+			upperLimitLabel = $(this.overlayContainerDiv)[0].children["upperLimitLabel"];
+			upperLimitLabel.style.fontSize = "28px";
+			upperLimitLabel.style.fontFamily = "Burbank Big Wide";
+			upperLimitLabel.style.textAlign = "center";
+			upperLimitLabel.innerHTML = upperBoundVal.toFixed(decimalPrecision);;
 		
 			//SETUP VALUE INPUT
 			valueInput = $(this.overlayContainerDiv)[0].children["valueInput"];
@@ -1349,6 +1407,8 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 			item.drag = true;
 		}
 		
+		var currentSegment = -1;
+		
 		function playSegment(target, begin, end) {
 			console.log("playSegment begin: " + begin + " end: " + end);
 			
@@ -1367,6 +1427,7 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 				"tick",
 				function (e) {
 					//console.log("target current frame: " + target.currentFrame);
+					currentSegment = target.currentFrame > 300 ? (600 - target.currentFrame) : target.currentFrame;
 					if (target.currentFrame == end) {
 						target.stop();
 						target.removeEventListener("tick", arguments.callee);
@@ -1463,46 +1524,34 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
 	// Actions
+	this.granularityLabel = new lib.an_Label({'id': 'granularityLabel', 'label':'Label', 'disabled':false, 'visible':true, 'class':'ui-label'});
+
+	this.granularityLabel.setTransform(130.05,125.95,0.66,1,0,0,0,50.1,11);
+
 	this.widgetName = new lib.an_Label({'id': 'widgetName', 'label':'Label', 'disabled':false, 'visible':true, 'class':'ui-label'});
 
 	this.widgetName.setTransform(130.5,249,1,1,0,0,0,50,11);
 
-	this.timeline.addTween(cjs.Tween.get(this.widgetName).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.widgetName},{t:this.granularityLabel}]}).wait(1));
 
 	// lowerLimitTxt
-	this.lowerLimitTxt = new cjs.Text("0.00", "25px 'Burbank Big Wd Bd'");
-	this.lowerLimitTxt.name = "lowerLimitTxt";
-	this.lowerLimitTxt.textAlign = "center";
-	this.lowerLimitTxt.lineHeight = 27;
-	this.lowerLimitTxt.lineWidth = 119;
-	this.lowerLimitTxt.parent = this;
-	this.lowerLimitTxt.setTransform(41.85,211.2,0.5677,0.5677);
+	this.lowerLimitLabel = new lib.an_Label({'id': 'lowerLimitLabel', 'label':'Label', 'disabled':false, 'visible':true, 'class':'ui-label'});
 
-	this.timeline.addTween(cjs.Tween.get(this.lowerLimitTxt).wait(1));
+	this.lowerLimitLabel.setTransform(39.05,219,0.66,1,0,0,0,50.1,11);
+
+	this.timeline.addTween(cjs.Tween.get(this.lowerLimitLabel).wait(1));
 
 	// upperLimitTxt
-	this.upperLimitTxt = new cjs.Text("100.00", "25px 'Burbank Big Wd Bd'");
-	this.upperLimitTxt.name = "upperLimitTxt";
-	this.upperLimitTxt.textAlign = "center";
-	this.upperLimitTxt.lineHeight = 27;
-	this.upperLimitTxt.lineWidth = 119;
-	this.upperLimitTxt.parent = this;
-	this.upperLimitTxt.setTransform(222.45,211.2,0.5677,0.5677);
+	this.upperLimitLabel = new lib.an_Label({'id': 'upperLimitLabel', 'label':'Label', 'disabled':false, 'visible':true, 'class':'ui-label'});
 
-	this.timeline.addTween(cjs.Tween.get(this.upperLimitTxt).wait(1));
+	this.upperLimitLabel.setTransform(222.05,219,0.66,1,0,0,0,50.1,11);
+
+	this.timeline.addTween(cjs.Tween.get(this.upperLimitLabel).wait(1));
 
 	// Layer_91
 	this.decrGranularityBtn = new lib.Symbol7copy();
 	this.decrGranularityBtn.setTransform(145.35,188.5,0.5677,0.5677,0,0,0,19.8,19.8);
 	new cjs.ButtonHelper(this.decrGranularityBtn, 0, 1, 2);
-
-	this.granularityTxt = new cjs.Text("0.01", "30px 'Burbank Big Wd Md'");
-	this.granularityTxt.name = "granularityTxt";
-	this.granularityTxt.textAlign = "center";
-	this.granularityTxt.lineHeight = 36;
-	this.granularityTxt.lineWidth = 111;
-	this.granularityTxt.parent = this;
-	this.granularityTxt.setTransform(129.4886,116.95,0.5677,0.5677);
 
 	this.instance = new lib.CachedBmp_1();
 	this.instance.setTransform(110.5,96.5,0.5,0.5);
@@ -1511,7 +1560,7 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 	this.incrGranularityBtn.setTransform(115.55,188.5,0.5677,0.5677,0,0,0,19.8,19.8);
 	new cjs.ButtonHelper(this.incrGranularityBtn, 0, 1, 2);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.incrGranularityBtn},{t:this.instance},{t:this.granularityTxt},{t:this.decrGranularityBtn}]}).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.incrGranularityBtn},{t:this.instance},{t:this.decrGranularityBtn}]}).wait(1));
 
 	// setValueHand
 	this.valueHand = new lib.Symbol16();
@@ -1550,11 +1599,11 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/igrip_widget_v0.2_atlas_.png?1577063196488", id:"igrip_widget_v0.2_atlas_"},
-		{src:"components/lib/jquery-3.4.1.min.js?1577063196561", id:"lib/jquery-3.4.1.min.js"},
-		{src:"components/sdk/anwidget.js?1577063196561", id:"sdk/anwidget.js"},
-		{src:"components/ui/src/textinput.js?1577063196561", id:"an.TextInput"},
-		{src:"components/ui/src/label.js?1577063196561", id:"an.Label"}
+		{src:"images/igrip_widget_v0.3_atlas_.png", id:"igrip_widget_v0.3_atlas_"},
+		{src:"components/lib/jquery-3.4.1.min.js", id:"lib/jquery-3.4.1.min.js"},
+		{src:"components/sdk/anwidget.js", id:"sdk/anwidget.js"},
+		{src:"components/ui/src/textinput.js", id:"an.TextInput"},
+		{src:"components/ui/src/label.js", id:"an.Label"}
 	],
 	preloads: []
 };

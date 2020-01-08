@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="authoring-tool" content="Adobe_Animate_CC">
-<title>igrip-widget-v0.2</title>
+<title>igrip-widget-v0.3</title>
 <!-- write your code here -->
 <style>
   #animation_container {
@@ -20,18 +20,9 @@
 	left:0;right:0;
 	top:0;bottom:0;
   }
-
-  @font-face {font-family: "Burbank Big Wide";
-  	src: url("../fonts/BurbankBigWide.eot"); /* IE9*/
-  	src: url("../fonts/BurbankBigWide.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-  	url("../fonts/BurbankBigWide.woff2") format("woff2"), /* chrome、firefox */
-  	url("../fonts/BurbankBigWide.woff") format("woff"), /* chrome、firefox */
-  	url("../fonts/BurbankBigWide.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-  	url("../fonts/BurbankBigWide.svg#BurbankBigWide") format("svg"); /* iOS 4.1- */
-  }
 </style>
 <script src="libs/1.0.0/createjs.min.js"></script>
-<script src="libs/igrip-widget-v0.3.js"></script>
+<script src="igrip-widget-v0.3.js"></script>
 <script>
 var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
 function init() {
@@ -77,8 +68,8 @@ function handleComplete(evt,comp) {
 <!-- write your code here -->
 </head>
 <body onload="init();" style="margin:0px;">
-	<div id="animation_container" style="background-color:rgba(255, 255, 255, 0.00); width:264px; height:264px">
-		<canvas id="canvas" width="264" height="264" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 0.00);"></canvas>
+	<div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00); width:264px; height:264px">
+		<canvas id="canvas" width="264" height="264" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
 		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:264px; height:264px; position: absolute; left: 0px; top: 0px; display: block;">
 		</div>
 	</div>
