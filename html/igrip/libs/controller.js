@@ -8,6 +8,8 @@ var allLoaded = false;
 var loadedArr = 0
 var connector;
 
+var lastPacketsSent = {};
+
 function loadComplete(){
     loadedArr++;
 
@@ -70,9 +72,13 @@ function uuidToName(uuid){
     return "";
 }
 
+
 function setValueCallback(val, uuid){
     if(connector){
-        connector.sendValuePacket(uuidToName(uuid), val)
+        if(lastPacketsSent[uuid] != val){
+            lastPacketsSent[uuid] = val;
+            connector.sendValuePacket(uuidToName(uuid), val)
+        }
     }
 }
 
