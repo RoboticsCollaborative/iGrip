@@ -1213,12 +1213,10 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 			lowerBoundVal = val;
 			lowerLimitLabel.innerHTML = val.toFixed(decimalPrecision);
 			
-			if(scaledVal < val){
-				this.setValue((upperBoundVal + lowerBoundVal) / 2, true);
-			}
 			
-			if(scaledLimit < val){
-				this.setLimit(upperBoundVal, true);
+			if(scaledVal < val || scaledLimit < val){
+				this.setValue((lowerBoundVal + (upperBoundVal + lowerBoundVal) / 2) / 2, true);
+				this.setLimit((upperBoundVal + lowerBoundVal) / 2, true);
 			}
 		}
 		
@@ -1226,12 +1224,9 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 			upperBoundVal = val;
 			upperLimitLabel.innerHTML = val.toFixed(decimalPrecision);
 			
-			if(scaledVal > upperBoundVal){
-				this.setValue((upperBoundVal + lowerBoundVal) / 2, true);
-			}
-			
-			if(scaledLimit > upperBoundVal){
-				this.setLimit(upperBoundVal, true);
+			if(scaledVal > upperBoundVal || scaledLimit > upperBoundVal){
+				this.setValue((lowerBoundVal + (upperBoundVal + lowerBoundVal) / 2) / 2, true);
+				this.setLimit((upperBoundVal + lowerBoundVal) / 2, true);
 			}
 		}
 		
@@ -1384,8 +1379,8 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 			}.bind(this);
 			
 			this.setColor(defaultDialColor);
-			this.setLimit((this.getUpperBound() - this.getLowerBound()) / 2);
-			this.setValue((this.getUpperBound() - this.getLowerBound()) / 4);
+			this.setLimit((this.getUpperBound() + this.getLowerBound()) / 2);
+			this.setValue((this.getLowerBound() + ((this.getUpperBound() + this.getLowerBound()) / 2)) / 2);
 			
 			//SETUP GRANULARITY BTN ROCKERS
 			
@@ -1612,11 +1607,11 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/igrip_widget_v0.3_atlas_.png?1578522414981", id:"igrip_widget_v0.3_atlas_"},
-		{src:"components/lib/jquery-3.4.1.min.js?1578522415098", id:"lib/jquery-3.4.1.min.js"},
-		{src:"components/sdk/anwidget.js?1578522415098", id:"sdk/anwidget.js"},
-		{src:"components/ui/src/textinput.js?1578522415098", id:"an.TextInput"},
-		{src:"components/ui/src/label.js?1578522415098", id:"an.Label"}
+		{src:"images/igrip_widget_v0.3_atlas_.png?1578692736563", id:"igrip_widget_v0.3_atlas_"},
+		{src:"components/lib/jquery-3.4.1.min.js?1578692736641", id:"lib/jquery-3.4.1.min.js"},
+		{src:"components/sdk/anwidget.js?1578692736641", id:"sdk/anwidget.js"},
+		{src:"components/ui/src/textinput.js?1578692736641", id:"an.TextInput"},
+		{src:"components/ui/src/label.js?1578692736641", id:"an.Label"}
 	],
 	preloads: []
 };
