@@ -17,8 +17,7 @@ class WebTunnel(threading.Thread):
         }
 
         self.inboundPackets = {
-            "USER_VALUE":"uv",
-            "HEARTBEAT":"hb"
+            "USER_VALUE":"uv"
         }
 
         self.positionSuffix = "0";
@@ -126,11 +125,10 @@ class WebTunnel(threading.Thread):
                         print('Could not find target with prefix: ' + jointPrefix)
                 else:
                     print('Corrupt USER_VALUE packet')
-            elif tokens[0] == self.inboundPackets['HEARTBEAT']:
-                print('Heartbeat from client')
-                pass
             else:
                 print('Unhandled packet: ' + tokens[0])
+        elif message == 'PING':
+            self.server.send_message_to_all('PONG')
         else:
             print('Invalid packet')
 

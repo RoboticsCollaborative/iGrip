@@ -21,6 +21,12 @@ function loadComplete(){
 
 function setupConnection(){
     connector = new Connector();
+
+    window.addEventListener('beforeunload', (event) => {
+        if(connector){
+            connector.ws.close();
+        }
+    });
 }
 
 function setupWidgets(){
@@ -127,21 +133,6 @@ function setBounds(name, lowerBound, upperBound){
     widgets[nameToUUID[name]].setUpperBound(upperBound);
 }
 
-var heartbeat;
-
-function startHeartbeat(){
-    heartbeat = setInterval(function(){
-        if(connector){
-            connector.sendHeartbeatPacket();
-        }
-    }, 3000);
-}
-
-function stopHeartbeat(){
-    clearInterval(heartbeat);
-    heartbeat = null;
-}
-
 class Connector{
     constructor(host, port){
         this.ws = new WebSocket("ws://127.0.0.1:5679/");
@@ -184,28 +175,18 @@ class Connector{
         console.log('Connection established!');
         document.getElementById('statusBox').innerHTML = ""
         document.getElementById('topStatus').innerHTML = "Status: Online"
-
-        startHeartbeat();        
     }
 
     onClose(){
         console.log('Connection lost!');
         document.getElementById('statusBox').innerHTML = "Connection lost."
         document.getElementById('topStatus').innerHTML = "Status: <font color='#ff0000'>Offline</font>"
-        
-        if(heartbeat){
-            stopHeartbeat();
-        }
     }
 
     onError(){
         console.log('Connection error!')
         document.getElementById('statusBox').innerHTML = "Connection error :("
         document.getElementById('topStatus').innerHTML = "Status: <font color='#ff0000'>Offline</font>"
-        
-        if(heartbeat){
-            stopHeartbeat();
-        }
     }
 
     sendHeartbeatPacket(){
