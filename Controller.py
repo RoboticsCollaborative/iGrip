@@ -59,7 +59,7 @@ class Controller(threading.Thread):
                         self.lastActualPositions[i] = self.rddaProxy.actual_positions[i]
                         self.tunnel.sendPositionFeedbackPacket(i, self.rddaProxy.actual_positions[i])
 
-                    self.tunnel.sendStiffnessFeedbackPacket(i, self.rddaProxy.applied_efforts[i])
+                    #self.tunnel.sendStiffnessFeedbackPacket(i, self.rddaProxy.applied_efforts[i])
 
             self.rate.sleep()
             self.iterations += 1
@@ -68,6 +68,13 @@ class Controller(threading.Thread):
         print 'Setting position i = ' + str(i) + ' val = ' + str(val)
         if i < len(self.position):
             self.position[i] = val
+        else:
+            print 'Index is invalid!'
+
+    def setMaxVelocity(self, i, val):
+        print 'Setting max velocity i = ' + str(i) + ' val = ' + str(val)
+        if i < len(self.maxVelocity):
+            self.maxVelocity[i] = val
         else:
             print 'Index is invalid!'
     

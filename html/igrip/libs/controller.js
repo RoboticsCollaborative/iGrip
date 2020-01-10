@@ -28,7 +28,7 @@ function setupWidgets(){
     widgets[widget1Frame.contentWindow.exportRoot.UUID] = widget1Frame.contentWindow.exportRoot;
     nameToUUID["joint0_0"] = widget1Frame.contentWindow.exportRoot.UUID;
 
-    widget2Frame.contentWindow.exportRoot.setWidgetName("Velocity");
+    widget2Frame.contentWindow.exportRoot.setWidgetName("Max Velocity");
     widget2Frame.contentWindow.exportRoot.setColor("#00b354");
     widgets[widget2Frame.contentWindow.exportRoot.UUID] = widget2Frame.contentWindow.exportRoot;
     nameToUUID["joint0_1"] = widget2Frame.contentWindow.exportRoot.UUID;
@@ -42,7 +42,7 @@ function setupWidgets(){
     widgets[widget4Frame.contentWindow.exportRoot.UUID] = widget4Frame.contentWindow.exportRoot;
     nameToUUID["joint1_0"] = widget4Frame.contentWindow.exportRoot.UUID;
 
-    widget5Frame.contentWindow.exportRoot.setWidgetName("Velocity");
+    widget5Frame.contentWindow.exportRoot.setWidgetName("Max Velocity");
     widget5Frame.contentWindow.exportRoot.setColor("#00b354");
     widgets[widget5Frame.contentWindow.exportRoot.UUID] = widget5Frame.contentWindow.exportRoot;
     nameToUUID["joint1_1"] = widget5Frame.contentWindow.exportRoot.UUID;
@@ -127,6 +127,21 @@ function setBounds(name, lowerBound, upperBound){
     widgets[nameToUUID[name]].setUpperBound(upperBound);
 }
 
+var heartbeat;
+
+function startHeartbeat(){
+    heartbeat = setInterval(function(){
+        if(connector){
+            connector.sendHeartbeatPacket();
+        }
+    }, 3000);
+}
+
+function stopHeartbeat(){
+    clearInterval(heartbeat);
+    heartbeat = null;
+}
+
 class Connector{
     constructor(host, port){
         this.ws = new WebSocket("ws://127.0.0.1:5679/");
@@ -170,9 +185,7 @@ class Connector{
         document.getElementById('statusBox').innerHTML = ""
         document.getElementById('topStatus').innerHTML = "Status: Online"
 
-        this.heartbeat = setInterval(function(){
-            this.sendHeartbeatPacket();
-        }.bind(this), this.heartbeatRate);
+        startHeartbeat();        
     }
 
     onClose(){
@@ -180,9 +193,8 @@ class Connector{
         document.getElementById('statusBox').innerHTML = "Connection lost."
         document.getElementById('topStatus').innerHTML = "Status: <font color='#ff0000'>Offline</font>"
         
-        if(this.heartbeat){
-            clearInterval(this.heartbeat);
-            this.heartbeat = null;
+        if(heartbeat){
+            stopHeartbeat();
         }
     }
 
@@ -191,14 +203,13 @@ class Connector{
         document.getElementById('statusBox').innerHTML = "Connection error :("
         document.getElementById('topStatus').innerHTML = "Status: <font color='#ff0000'>Offline</font>"
         
-        if(this.heartbeat){
-            clearInterval(this.heartbeat);
-            this.heartbeat = null;
-        }    
+        if(heartbeat){
+            stopHeartbeat();
+        }
     }
 
     sendHeartbeatPacket(){
-        var pkt = ['hb']
+        var pkt = ['hb', 1].join('%');
         this.ws.send(pkt)
     }
 

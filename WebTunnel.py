@@ -73,15 +73,20 @@ class WebTunnel(threading.Thread):
             self.server.send_message(client, self.getPositionFeedbackPacket(k,
             self.positionFeedback[k]))
 
+        #send latest max velocity bounds
+        for k in self.maxVelocityBounds:
+            self.server.send_message(client, self.getMaxVelocityBoundsPacket(k,
+            str(self.maxVelocityBounds[k][0]), self.maxVelocityBounds[k][1]))
+
         #send latest stiffness bounds
         for k in self.stiffnessBounds:
             self.server.send_message(client, self.getStiffnessBoundsPacket(k,
             str(self.stiffnessBounds[k][0]), self.stiffnessBounds[k][1]))
 
         #send latest applied force feedbacks
-        for k in self.stiffnessFeedback:
-            self.server.send_message(client, self.getStiffnessFeedbackPacket(k,
-            self.stiffnessFeedback[k]))
+        #for k in self.stiffnessFeedback:
+        #    self.server.send_message(client, self.getStiffnessFeedbackPacket(k,
+        #    self.stiffnessFeedback[k]))
 
 
     def client_left(self, client, server):
@@ -110,6 +115,8 @@ class WebTunnel(threading.Thread):
                         if self.controller:
                             if jointType == self.positionSuffix:
                                 self.controller.setPosition(index, tokens[2])
+                            elif jointType == self.maxVelocitySuffix:
+                                self.controller.setMaxVelocity(index, tokens[2])
                             elif jointType == self.stiffnessSuffix:
                                 self.controller.setStiffness(index, tokens[2])
                         else:
