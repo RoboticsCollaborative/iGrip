@@ -17,7 +17,8 @@ class WebTunnel(threading.Thread):
         }
 
         self.inboundPackets = {
-            "USER_VALUE":"uv"
+            "USER_VALUE":"uv",
+            "HEARTBEAT":"hb"
         }
 
         self.positionSuffix = "0";
@@ -43,6 +44,7 @@ class WebTunnel(threading.Thread):
 
         self.positionBounds = {};
         self.stiffnessBounds = {};
+        self.maxVelocityBounds = {};
 
 
     def run(self):
@@ -117,6 +119,9 @@ class WebTunnel(threading.Thread):
                         print('Could not find target with prefix: ' + jointPrefix)
                 else:
                     print('Corrupt USER_VALUE packet')
+            elif tokens[0] == self.inboundPackets['HEARTBEAT']:
+                print('Heartbeat from client')
+                pass
             else:
                 print('Unhandled packet: ' + tokens[0])
         else:
@@ -139,6 +144,10 @@ class WebTunnel(threading.Thread):
     def sendStiffnessFeedbackPacket(self, no, val):
         self.server.send_message_to_all(self.getStiffnessFeedbackPacket(no, val))
         self.stiffnessFeedback[no] = val
+
+    def sendMaxVelocityBoundsPacket(self, no, lower, upper):
+        self.server.send_message_to_all(self.getMaxVelocityBoundsPacket(no, lower, upper))
+        self.maxVelocityBounds[no] = [lower, upper]
 
     def getPositionBoundsPacket(self, no, lower, upper):
         if self.jointNoToWidgetPrefix[no]:
@@ -168,6 +177,14 @@ class WebTunnel(threading.Thread):
         if self.jointNoToWidgetPrefix[no]:
             return (self.outboundPackets["FEEDBACK_VALUE"] + "%" + self.jointNoToWidgetPrefix[no] +
             str(self.stiffnessSuffix) + "%" + str(val))
+        else:
+            print("Could not find widget prefix for no = " + no)
+            return None
+
+    def getMaxVelocityBoundsPacket(self, no, lower, upper):
+        if self.jointNoToWidgetPrefix[no]:
+            return (self.outboundPackets["SET_VALUE_BOUNDS"] + "%" + self.jointNoToWidgetPrefix[no] +
+            self.maxVelocitySuffix  + "%" + str(lower) + "%" + str(upper))
         else:
             print("Could not find widget prefix for no = " + no)
             return None

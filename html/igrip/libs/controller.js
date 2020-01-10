@@ -135,6 +135,8 @@ class Connector{
         this.ws.onclose = this.onClose;
         this.ws.onerror = this.onError;
 
+        this.heartbeatRate = 3000; //ms 
+
         //this.onOpen();
     }
     //SETUP WEBSOCKET CLIENT
@@ -167,18 +169,37 @@ class Connector{
         console.log('Connection established!');
         document.getElementById('statusBox').innerHTML = ""
         document.getElementById('topStatus').innerHTML = "Status: Online"
+
+        this.heartbeat = setInterval(function(){
+            this.sendHeartbeatPacket();
+        }.bind(this), this.heartbeatRate);
     }
 
     onClose(){
         console.log('Connection lost!');
         document.getElementById('statusBox').innerHTML = "Connection lost."
         document.getElementById('topStatus').innerHTML = "Status: <font color='#ff0000'>Offline</font>"
+        
+        if(this.heartbeat){
+            clearInterval(this.heartbeat);
+            this.heartbeat = null;
+        }
     }
 
     onError(){
         console.log('Connection error!')
         document.getElementById('statusBox').innerHTML = "Connection error :("
         document.getElementById('topStatus').innerHTML = "Status: <font color='#ff0000'>Offline</font>"
+        
+        if(this.heartbeat){
+            clearInterval(this.heartbeat);
+            this.heartbeat = null;
+        }    
+    }
+
+    sendHeartbeatPacket(){
+        var pkt = ['hb']
+        this.ws.send(pkt)
     }
 
     sendValuePacket(src, val){

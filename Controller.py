@@ -14,6 +14,7 @@ class Controller(threading.Thread):
         #TODO: make these modular and dynamically loaded
         self.stiffness = np.array([0.4, 0.4])
         self.position = np.array([0.15, 0.15])
+        self.maxVelocity = np.array([5.0, 5.0])
         self.lastActualPositions = np.array([0.15, 0.15])
         self.rate = rospy.Rate(500)
         #setup web tunnel
@@ -39,6 +40,7 @@ class Controller(threading.Thread):
 
             #stifness bounds
             self.tunnel.sendStiffnessBoundsPacket(i, 0, 5)
+            self.tunnel.sendMaxVelocityBoundsPacket(i, 0, 10)
 
         while not rospy.is_shutdown():
             if not self.isRunning:
@@ -47,6 +49,7 @@ class Controller(threading.Thread):
 
             self.rddaProxy.set_stiffness(self.stiffness)
             self.rddaProxy.set_positions(self.position)
+            self.rddaProxy.set_max_velocities(self.maxVelocity)
 
             if self.iterations % 2 == 0:
                 for i in range(len(self.rddaProxy.joint_lower_bounds)):
