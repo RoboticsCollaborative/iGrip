@@ -1301,21 +1301,21 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 			
 			//SETUP GRANULARITY LABEL
 			granularityLabel = $(this.overlayContainerDiv)[0].children["granularityLabel"];
-			granularityLabel.style.fontSize = "32px";
+			granularityLabel.style.fontSize = "24px";
 			granularityLabel.style.fontFamily = "Burbank Big Wide";
 			granularityLabel.style.textAlign = "center";
 			granularityLabel.innerHTML = granularity;
 			
 			//SETUP LOWER LIMIT LABEL
 			lowerLimitLabel = $(this.overlayContainerDiv)[0].children["lowerLimitLabel"];
-			lowerLimitLabel.style.fontSize = "28px";
+			lowerLimitLabel.style.fontSize = "20px";
 			lowerLimitLabel.style.fontFamily = "Burbank Big Wide";
 			lowerLimitLabel.style.textAlign = "center";
 			lowerLimitLabel.innerHTML = lowerBoundVal.toFixed(decimalPrecision);
 			
 			//SETUP UPPER LIMIT LABEL
 			upperLimitLabel = $(this.overlayContainerDiv)[0].children["upperLimitLabel"];
-			upperLimitLabel.style.fontSize = "28px";
+			upperLimitLabel.style.fontSize = "20px";
 			upperLimitLabel.style.fontFamily = "Burbank Big Wide";
 			upperLimitLabel.style.textAlign = "center";
 			upperLimitLabel.innerHTML = upperBoundVal.toFixed(decimalPrecision);;
@@ -1323,7 +1323,7 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 			//SETUP VALUE INPUT
 			valueInput = $(this.overlayContainerDiv)[0].children["valueInput"];
 		
-			valueInput.style.fontSize = "25px";
+			valueInput.style.fontSize = "12px";
 			valueInput.style.color = "#000000";
 			valueInput.style.fontFamily = "Burbank Big Wide";
 			valueInput.style.fontWeight = "bold";
@@ -1335,7 +1335,7 @@ p.nominalBounds = new cjs.Rectangle(-2.1,-2.1,43.5,44);
 			// $(this.overlayContainerDiv)[0] is a global reference to a div element created by Animate CC
 			limitInput = $(this.overlayContainerDiv)[0].children["limitInput"];
 		
-			limitInput.style.fontSize = "25px";
+			limitInput.style.fontSize = "12px";
 			limitInput.style.color = "#9A0000";
 			limitInput.style.fontFamily = "Burbank Big Wide";
 			limitInput.style.fontWeight = "bold";
